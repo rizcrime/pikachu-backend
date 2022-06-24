@@ -20,13 +20,13 @@ async function getMultiple(page = 1) {
 
 async function create(programmingLanguage) {
   const result = await db.query(
-    `INSERT INTO users
+    `INSERT INTO bookmarks
     (name) 
     VALUES
     ("${programmingLanguage.name}")`
   );
 
-  let message = 'Error in creating programming language';
+  let message = 'Error in creating data';
 
   if (result.affectedRows) {
     message = `Programming language updated successfully with ${result}`
@@ -39,7 +39,7 @@ async function create(programmingLanguage) {
 
 async function update(id, programmingLanguage) {
   const result = await db.query(
-    `UPDATE users 
+    `UPDATE bookmarks 
     SET name="${programmingLanguage.name}", 
     role="${programmingLanguage.role}", 
     email="${programmingLanguage.email}", 
@@ -47,10 +47,10 @@ async function update(id, programmingLanguage) {
     WHERE id=${id}`
   );
 
-  let message = 'Error in updating programming language';
+  let message = 'Error in updating data';
 
   if (result.affectedRows) {
-    message = `Programming language updated successfully with ${result}`;
+    message = `data updated successfully with ${result}`;
   }
 
   return {
@@ -60,13 +60,13 @@ async function update(id, programmingLanguage) {
 
 async function remove(id) {
   const result = await db.query(
-    `DELETE FROM users WHERE id=${id}`
+    `DELETE FROM bookmarks WHERE id=${id}`
   );
 
-  let message = 'Error in deleting programming language';
+  let message = 'Error in deleting data';
 
   if (result.affectedRows) {
-    message = 'Programming language deleted successfully';
+    message = 'data deleted successfully';
   }
 
   return {
